@@ -1,19 +1,29 @@
+// Useful UI JS functionality
+// Uses jQuery
 $(document).ready(function(){
+    // use for searching an address
+    // get the latitude and longitude
+    // using Mapquest geo API
 	$("#findLatLongBtn").click(function() {
 		 getPlaceCoordinates();
 	});
 
+    // use for submitting a html form
+    // the form mut have post and method in place
 	$('#addform').submit(function () {
-		var name = $.trim($('#formName').val());
+        var name = $.trim($('#formName').val());
+        // check for empty names
 		if (name === '') {
 			alert('Name field is empty.');
 			return false;
-		}
+        }
+        // check for dates when not a date input type
 		var dob = $.trim($('#formDateField').val());
 		if ((dob === '') || (!isValidDate(dob))) {
 			alert('Date field is empty or invalid.');
 			return false;
-		}
+        }
+        // check for latitude and longitude
 		var xlat = Number($.trim($('#formLatitude').val()));
 		if ((xlat == NaN) || (xlat > 180) || (xlat < -180)) {
 			alert('Latitude field is empty, invalid or out of range.');
@@ -27,6 +37,7 @@ $(document).ready(function(){
 	});
 });
 
+// isValidDate check for date
 function isValidDate(dateString) {
   	var regEx = /^\d{4}-\d{2}-\d{2}$/;
   	if (!dateString.match(regEx)) return false;  
@@ -36,6 +47,7 @@ function isValidDate(dateString) {
   	return true;
 }
 
+// getPlaceCoordinates 
 function getPlaceCoordinates() {
 	var address = $("#formAddress").val();
 	// we are using MapQuest's Nominatim service
