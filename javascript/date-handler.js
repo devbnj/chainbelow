@@ -6,7 +6,7 @@ function (bparams) {
         + bparams.bminute + ' GMT' + bparams.bzone;
     let yr1 = Number(bparams.byear);
     // handle two digit years differently
-    // not as belonging to the current epoch
+    // Not belonging to the current epoch
     if (yr1 >= 0 && yr1 <= 99) {
         dtstr = simpleZeroFill(yr1) + '-' + bparams.bmonth 
             + '-' + bparams.bdate;
